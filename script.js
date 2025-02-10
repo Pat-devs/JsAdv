@@ -1,3 +1,4 @@
+
 // html elements
 const drumkitContainer = document.getElementById("drumkit")
 
@@ -7,70 +8,57 @@ const sounds = ["clap.wav", "hihat.wav", "kick.wav", "openhat.wav", "ride.wav", 
 // todo: go from list of sounds and create buttons in the drumkit container
 // then also create an audio element for each (linked to proper audio file)
 
-console.log("loopin through the sounds array...")
-//for (let index = 0; index < sounds.length; index++) {
-//    const sound = sounds[index];
-//    
-///}
 for (const sound of sounds) {
 
-    console.log("processing sound with name " + sound)
-    
-    //drumkitContainer.innerHTML += `<button>${sound}</button>`
+    drumkitContainer.append(drumPad(sound))
+
+}
+
+function drumPad(sound) {
     // create the element using createElement instead of innerHTML:
     const buttonEl = createElement("button")
     const audioEl = createElement("audio")
     audioEl.src = `sounds/${sound}`
 
-    console.log("adding audio element with source: `sounds/`" + sound)
+    //sound.substring(0,sound.indexOf(".")): samme som:
+    const indexOfDot = sound.indexOf(".")
+    const soundName = sound.substring(0, indexOfDot) // 
 
-    buttonEl.textContent = "click"
-    // add event handler
-    buttonEl.addEventListener("click", function() {
+    buttonEl.textContent = soundName.toUpperCase()
+    // add pointerdown event handler to start the sound
+    buttonEl.addEventListener("pointerdown", function () {
         //console.log("clicked " + sound)
 
         audioEl.play()
     })
+    // add pointerup event handler to stop the sound
+    buttonEl.addEventListener("pointerup", function () {
+        audioEl.pause() // pause the sound
+        audioEl.currentTime = 0 // rewind
+    })
+
 
     // finally add the element to the drumkitcontainer element
-    drumkitContainer.append(buttonEl)
+    //drumkitContainer.append(buttonEl)
 
+    return buttonEl
 }
 
-// function takes type of element as first argument (ie. "div")
-function createElement(elementType) {
-    const element = document.createElement(elementType)
-    
-    return element
-}
-
-
-
-
-
-
-
-// lets try play audio with JS:
-//let audioEl = document.querySelector("audio")
-//console.log(audioEl)
-
-
-let playButton = document.querySelector("button")
-// add event handler to the button:
-// i html: <button onclick="playSound()">Play</button>
-// add an onclick event:
-//playButton.onclick = playSound
-
-// add a click event through the addeventlistener method:
-
-playButton.addEventListener("click", playSound)
-
-
-// play a sound
 
 
 function playSound() {
     console.log("Clap!")
 
     audioEl.play()
+}
+
+
+
+
+// utility functions
+
+function createElement(elementType) {
+    const element = document.createElement(elementType)
+    
+    return element
 }
