@@ -62,3 +62,40 @@ function createElement(elementType) {
     
     return element
 }
+
+
+
+
+const soundNames = ["clap.wav", "hihat.wav", "kick.wav", "openhat.wav", "ride.wav", "snare.wav", "tink.wav", "tom.wav",]
+
+
+// loops
+
+for (let index = 0; index < soundNames.length; index++) {
+    const soundName = soundNames[index];
+   
+    //console.log(soundName)
+
+    break
+}
+
+for (const soundName of soundNames) {
+    //console.log(soundName)
+}
+
+// array methods, that also loop :)
+
+// 1. forEach-method
+
+soundNames.forEach(function(value, index) {
+    //console.log(value + index)
+})
+
+// 2. map-method
+
+let myNewArray = soundNames.map((value) => drumPad(value))
+
+
+// 3. finn en eller flere array metode(r) som fungerer som .map men kan endre lengden på arrayet
+
+
